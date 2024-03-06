@@ -182,13 +182,11 @@ class _HomePageState extends State<HomePage>
                           color: Color(0xFF465394),
                         ),
                       ),
-                      Container(
-                        child: Image.asset(
-                          'assets/bell.png',
-                          width: 50,
-                          height: 50,
-                          fit: BoxFit.contain,
-                        ),
+                      Image.asset(
+                        'assets/bell.png',
+                        width: 50,
+                        height: 50,
+                        fit: BoxFit.contain,
                       ),
                     ],
                   ),
