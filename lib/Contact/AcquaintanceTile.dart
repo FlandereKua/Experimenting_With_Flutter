@@ -6,7 +6,7 @@ class AcquaintanceTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return acquaintances != null ? Container(
       padding: const EdgeInsets.only(top: 8.0),
       child: Card(
         margin: const EdgeInsets.fromLTRB(20.00, 6.00, 20.00, 0.00),
@@ -19,6 +19,8 @@ class AcquaintanceTile extends StatelessWidget {
           subtitle: Text('Phone Number: ${acquaintances!.phoneNumber.toString()}'),
         ),
       ),
+    ) : Container(
+
     );
   }
 }
