@@ -5,18 +5,17 @@ import 'package:go_router/go_router.dart';
 import 'package:alan_voice/alan_voice.dart';
 import '../Services/database.dart';
 
-class EditProfile extends StatefulWidget {
-  const EditProfile({super.key});
+class AddContact extends StatefulWidget {
+  const AddContact({super.key});
 
   @override
-  State<EditProfile> createState() => _EditProfileState();
+  State<AddContact> createState() => _EditProfileState();
 }
 
-class _EditProfileState extends State<EditProfile> {
+class _EditProfileState extends State<AddContact> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final nameController = TextEditingController();
   final phoneController = TextEditingController();
-  final addressController = TextEditingController();
 
   _EditProfileState() {
     /// Khởi tạo Alan Button với project key từ Alan AI Studio
@@ -32,9 +31,6 @@ class _EditProfileState extends State<EditProfile> {
       case "getName":
         nameController.text = command["text"];
         break;
-      case "getAddress":
-        addressController.text = command["text"];
-        break;
       case "getPhone":
         phoneController.text = command["text"];
         break;
@@ -46,7 +42,6 @@ class _EditProfileState extends State<EditProfile> {
   @override
   void dispose() {
     nameController.dispose();
-    addressController.dispose();
     phoneController.dispose();
     super.dispose();
   }
@@ -62,7 +57,7 @@ class _EditProfileState extends State<EditProfile> {
             children: [
               InkWell(
                   onTap: () {
-                    context.goNamed("Profile");
+                    context.goNamed("AddContact");
                   },
                   borderRadius: BorderRadius.circular(50),
                   child: Image.asset(
@@ -104,7 +99,7 @@ class _EditProfileState extends State<EditProfile> {
                         begin: Alignment.topLeft,
                         // Điểm bắt đầu của gradient
                         end:
-                            Alignment.bottomRight, // Điểm kết thúc của gradient
+                        Alignment.bottomRight, // Điểm kết thúc của gradient
                       ),
                     ),
                     child: const CircleAvatar(
@@ -142,21 +137,13 @@ class _EditProfileState extends State<EditProfile> {
                   const SizedBox(
                     height: 10,
                   ),
-                  CustomTextField(
-                    hintText: 'Address',
-                    controller: addressController,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
                   const SizedBox(
                     height: 30,
                   ),
                   CustomElevatedButton(
                       onPressed: () async {
                         await DataBaseService(uid: _auth.currentUser!.uid)
-                            .updateUserData(phoneController.text, nameController.text
-                                , addressController.text);
+                            .updateAcquaintances(phoneController.text, nameController.text);
                       },
                       child: const Text(
                         'Save',
