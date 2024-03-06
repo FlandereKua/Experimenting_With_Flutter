@@ -5,6 +5,7 @@ import 'package:HelpingHand/Home/HomePage.dart';
 import 'package:HelpingHand/ActivePage/Main_Wrapper.dart';
 import 'package:HelpingHand/Profile/ProfilePage.dart';
 import 'package:HelpingHand/Profile/EditProfilePage.dart';
+import 'package:HelpingHand/Contact/AddContactPage.dart';
 
 class AppNavigation {
   AppNavigation._();
@@ -61,7 +62,17 @@ class AppNavigation {
                       return ContactPage(
                         key: state.pageKey,
                       );
-                    }
+                    },
+                    routes: [
+                      /// edit profile
+                      GoRoute(
+                          path: 'subContact',
+                          name: 'SubAddContact',
+                          builder: (context, state) {
+                            return AddContact(
+                              key: state.pageKey,
+                            );
+                          })]
                 )
               ],
             ),
